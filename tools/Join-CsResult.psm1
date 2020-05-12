@@ -30,7 +30,7 @@ function Join-CsResult {
         }
         # 'offset' style endpoints
         else {
-            if ($Loop.meta.pagination.offset -is [int]) {
+            if ($Loop.meta.pagination.offset -match '\d{1,}$') {
                 # integer-based
                 [regex] $Pattern = 'offset=\d{1,}'
             } else {
@@ -55,8 +55,8 @@ function Join-CsResult {
             # Update/add token or integer to request
             if ($Loop.meta.pagination.after) {
                 $Value = 'after=' + $Loop.meta.pagination.after
-            } elseif ($Loop.meta.pagination.offset -eq 0) {
-                $Value = 'offset=' + $Loop.resources.count
+            } elseif ($Loop.meta.pagination.offset -match '\d{1,}$') {
+                $Value = 'offset=' + $Count
             } else {
                 $Value = 'offset=' + $Loop.meta.pagination.offset
             }
