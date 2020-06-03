@@ -37,6 +37,9 @@ function Get-CsActorId {
         [switch]
         $All
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/intel/queries/actors/v1?limit=' + [string] $Limit + '&offset=' + [string] $Offset
@@ -47,7 +50,7 @@ function Get-CsActorId {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

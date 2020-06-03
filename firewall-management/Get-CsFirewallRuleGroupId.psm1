@@ -37,6 +37,9 @@ function Get-CsFirewallRuleGroupId {
         [switch]
         $All
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/fwmgr/queries/rule-groups/v1?'
@@ -47,7 +50,7 @@ function Get-CsFirewallRuleGroupId {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Limit' { $Param.Uri += '&limit=' + [string] $Limit }
             'After' { $Param.Uri += '&after=' + $After }

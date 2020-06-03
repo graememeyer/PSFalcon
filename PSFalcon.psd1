@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '1.3.9'
+ModuleVersion = '1.4.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -519,7 +519,13 @@ PrivateData = @{
         IconUri = 'https://avatars3.githubusercontent.com/u/54042976?s=460&u=de53aed783c47ef9bd9ffe9489fb77a67648eb89&v=4'
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+        ReleaseNotes = "Version 1.4.0 changes:
+
+        * Issue #19: Removed .ToLower() from filters on various endpoints. This was initially implemented to prevent users from
+        having issues with case sensitivity, but it broke other filters.
+
+        * Added URL encoding when adding filters, to prevent multiple filter FQL statements from failing. This requires the
+        loading of 'Type' System.Web, which was added to each updated function in the 'begin' section."
 
     } # End of PSData hashtable
 

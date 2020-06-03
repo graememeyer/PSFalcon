@@ -37,6 +37,9 @@ function Get-CsHostId {
         [switch]
         $All
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/devices/queries/devices-scroll/v1?limit=' + [string] $Limit
@@ -48,7 +51,7 @@ function Get-CsHostId {
         }
         switch ($PSBoundParameters.Keys) {
             'Hidden' { $Param.Uri = '/devices/queries/devices-hidden/v1?limit=' + [string] $Limit }
-            'Filter' { $Param.Uri += '&filter=' + $Filter.ToLower() }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Offset' { $Param.Uri += '&offset=' + $Offset }
             'Debug' { $Param['Debug'] = $true }
             'Verbose' { $Param['Verbose'] = $true }

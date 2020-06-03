@@ -39,6 +39,9 @@ function Get-CsGroupMemberId {
         [switch]
         $All
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/devices/queries/host-group-members/v1?id=' + $Id + '&limit=' + [string] $Limit +
@@ -50,7 +53,7 @@ function Get-CsGroupMemberId {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }
         }

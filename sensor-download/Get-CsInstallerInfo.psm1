@@ -42,6 +42,9 @@ function Get-CsInstallerInfo {
         [array]
         $Id
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/sensors/combined/installers/v1?limit=' + [string] $Limit + '&offset=' + [string] $Offset
@@ -52,7 +55,7 @@ function Get-CsInstallerInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Id' { 
                 $Param['Uri'] = '/sensors/entities/installers/v1?ids='

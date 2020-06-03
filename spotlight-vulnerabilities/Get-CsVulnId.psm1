@@ -32,9 +32,12 @@ function Get-CsVulnId {
         [switch]
         $All
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
-            Uri = '/spotlight/queries/vulnerabilities/v1?limit=' + [string] $Limit + '&filter=' + $Filter
+            Uri = '/spotlight/queries/vulnerabilities/v1?limit=' + [string] $Limit + '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter)
             Method = 'get'
             Header = @{
                 accept = 'application/json'

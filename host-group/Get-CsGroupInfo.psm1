@@ -42,6 +42,9 @@ function Get-CsGroupInfo {
         [array]
         $Id
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/devices/combined/host-groups/v1?limit=' + [string] $Limit + '&offset=' + [string] $Offset
@@ -52,7 +55,7 @@ function Get-CsGroupInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter.ToLower() }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Id' { $Param.Uri = '/devices/entities/host-groups/v1?ids=' }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

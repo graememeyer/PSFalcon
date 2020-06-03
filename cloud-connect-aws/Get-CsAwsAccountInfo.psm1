@@ -42,6 +42,9 @@ function Get-CsAwsAccountInfo {
         [array]
         $Id
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/cloud-connect-aws/combined/accounts/v1?limit=' + [string] $Limit +
@@ -53,7 +56,7 @@ function Get-CsAwsAccountInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::($Filter) }
             'Id' { $Param.Uri = '/cloud-connect-aws/entities/accounts/v1?ids=' }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

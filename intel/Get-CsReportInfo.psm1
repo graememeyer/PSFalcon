@@ -58,6 +58,9 @@ function Get-CsReportInfo {
         [array]
         $Field = @('__basic__')
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/intel/combined/reports/v1?limit=' + [string] $Limit + '&offset=' + [string] $Offset +
@@ -69,7 +72,7 @@ function Get-CsReportInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Id' { 
                 $Param.Uri = '/intel/entities/reports/v1?fields=' + ($Field -join '&fields=') + '&ids='

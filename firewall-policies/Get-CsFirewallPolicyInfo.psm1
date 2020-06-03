@@ -42,6 +42,9 @@ function Get-CsFirewallPolicyInfo {
         [array]
         $Id
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/policy/combined/firewall/v1?limit=' + [string] $Limit + '&offset=' + [string] $Offset
@@ -52,7 +55,7 @@ function Get-CsFirewallPolicyInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter.ToLower() }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Id' { $Param.Uri = '/policy/entities/firewall/v1?ids=' }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

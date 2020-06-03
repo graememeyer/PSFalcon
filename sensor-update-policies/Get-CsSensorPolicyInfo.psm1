@@ -42,6 +42,9 @@ function Get-CsSensorPolicyInfo {
         [array]
         $Id
     )
+    begin{
+        if ($Filter) { Add-Type -AssemblyName System.Web }
+    }
     process{
         $Param = @{
             Uri = '/policy/combined/sensor-update/v2?limit=' + [string] $Limit + '&offset=' + [string] $Offset
@@ -52,7 +55,7 @@ function Get-CsSensorPolicyInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + $Filter }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Id' { $Param.Uri = '/policy/entities/sensor-update/v2?ids=' }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }
