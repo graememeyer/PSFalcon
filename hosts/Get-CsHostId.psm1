@@ -51,7 +51,7 @@ function Get-CsHostId {
         }
         switch ($PSBoundParameters.Keys) {
             'Hidden' { $Param.Uri = '/devices/queries/devices-hidden/v1?limit=' + [string] $Limit }
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
             'Offset' { $Param.Uri += '&offset=' + $Offset }
             'Debug' { $Param['Debug'] = $true }
             'Verbose' { $Param['Verbose'] = $true }
