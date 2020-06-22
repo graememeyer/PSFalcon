@@ -519,10 +519,9 @@ PrivateData = @{
         IconUri = 'https://avatars3.githubusercontent.com/u/54042976?s=460&u=de53aed783c47ef9bd9ffe9489fb77a67648eb89&v=4'
 
         # ReleaseNotes of this module
-        ReleaseNotes = "Version 1.4.2 changes:
+        ReleaseNotes = "Version 1.4.1 changes:
 
-        * Bugfix (Issue #21): Changed URL encoding for 'Filter' param from 'UrlEncode' to 'UrlPathEncode' to
-        replace spaces with %20 instead of '+', which didn't work with FQL queries"
+        * Removed improperly labeled 'queue_offline_all' parameter from RTR batch initialization."
 
     } # End of PSData hashtable
 
