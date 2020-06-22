@@ -55,7 +55,7 @@ function Get-CsInstallerInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Id' { 
                 $Param['Uri'] = '/sensors/entities/installers/v1?ids='

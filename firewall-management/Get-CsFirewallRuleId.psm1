@@ -74,7 +74,7 @@ function Get-CsFirewallRuleId {
         }
         switch ($PSBoundParameters.Keys) {
             'Id' { $Param.Uri = '/fwmgr/queries/policy-rules/v1?id=' + [string] $Id }
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Limit' { $Param.Uri += '&limit=' + [string] $Limit }
             'After' { $Param.Uri += '&after=' + $After }

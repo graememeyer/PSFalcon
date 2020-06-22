@@ -55,7 +55,7 @@ function Get-CsPreventPolicyInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Id' { $Param.Uri = '/policy/entities/prevention/v1?ids=' }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

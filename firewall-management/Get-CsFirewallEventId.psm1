@@ -50,7 +50,7 @@ function Get-CsFirewallEventId {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Limit' { $Param.Uri += '&limit=' + [string] $Limit }
             'After' { $Param.Uri += '&after=' + $After }

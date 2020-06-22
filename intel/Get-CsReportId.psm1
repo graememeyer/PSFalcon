@@ -50,7 +50,7 @@ function Get-CsReportId {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Verbose' { $Param['Verbose'] = $true }
             'Debug' { $Param['Debug'] = $true }

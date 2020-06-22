@@ -72,7 +72,7 @@ function Get-CsActorInfo {
             }
         }
         switch ($PSBoundParameters.Keys) {
-            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlPathEncode($Filter) }
+            'Filter' { $Param.Uri += '&filter=' + [System.Web.HTTPUtility]::UrlEncode($Filter) }
             'Query' { $Param.Uri += '&q=' + $Query }
             'Id' { 
                 $Param.Uri = '/intel/entities/actors/v1?fields=' + ($Field -join '&fields=') + '&ids='
