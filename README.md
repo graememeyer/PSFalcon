@@ -1,3 +1,12 @@
+# Fork Notes
+This is a fork of [bk-cs/PSFalcon](https://github.com/bk-cs/PSFalcon) which supports [graememeyer/CredentialManager](https://github.com/graememeyer/CredentialManager) for credential storage. 
+
+Currently that is the only change. Everything below this line is unchanged.
+
+
+---
+
+
 **WARNING**: The PSFalcon modules are an independent project and not supported by CrowdStrike.
 
 # Installation
