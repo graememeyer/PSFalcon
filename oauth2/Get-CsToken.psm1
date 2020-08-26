@@ -56,6 +56,17 @@ function Get-CsToken {
             'CID' { $Falcon['cid'] = [string] $CID }
             'Proxy' { $Falcon['proxy'] = $Proxy }
         }
+
+        # If missing, check credential store for API credentials
+        if (-not($Falcon.id) -or -not($Falcon.secret)) {
+            try {
+                $StoredCredential = Get-StoredCredential -Name "CrowdStrike"
+                $Falcon['id'] = $StoredCredential.GetNetworkCredential().UserName
+                $Falcon['secret'] = $StoredCredential.GetNetworkCredential().Password | ConvertTo-SecureString -AsPlainText -Force
+            }
+            catch { }
+        }
+
         # If missing, prompt for Id/Secret
         if (-not($Falcon.id)) {
             $Falcon['id'] = Read-Host 'Client Id'
