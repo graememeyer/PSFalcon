@@ -1,5 +1,5 @@
 # Fork Notes
-This is a fork of [bk-cs/PSFalcon](https://github.com/bk-cs/PSFalcon) which supports [graememeyer/CredentialManager](https://github.com/graememeyer/CredentialManager) for credential storage. 
+This is a fork of [bk-cs/PSFalcon](https://github.com/bk-cs/PSFalcon) which supports [graememeyer/PS.CredentialManager](https://github.com/graememeyer/PS.CredentialManager) for credential storage. 
 
 Currently that is the only change. Everything below this line is unchanged.
 
