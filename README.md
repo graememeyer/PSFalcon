@@ -3,29 +3,30 @@ This is a fork of [bk-cs/PSFalcon](https://github.com/bk-cs/PSFalcon) which supp
 
 Currently that is the only change. Everything below this line is unchanged.
 
+# Installation
+
+This fork isn't published on a PowerShell repository, so to install it you must simply copy the module folder to a folder [on your PSModulePath](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/installing-a-powershell-module?view=powershell-5.1#where-to-install-modules).
+
 
 ---
 
 
 **WARNING**: The PSFalcon modules are an independent project and not supported by CrowdStrike.
 
-# Installation
+~~# Installation~~
 
-Requires **[PowerShell 5.1+](https://github.com/PowerShell/PowerShell#get-powershell)**
+~~Requires **[PowerShell 5.1+](https://github.com/PowerShell/PowerShell#get-powershell)**~~
 
-```powershell
-PS> Install-Module -Name PSFalcon
-```
 
-To update to the latest version:
+~~PS> Install-Module -Name PSFalcon~~
 
-```powershell
-PS> Update-Module -Name PSFalcon
-```
+~~To update to the latest version:~~
 
-If you have any issues installing using the commands above, you can download this repository
+~~PS> Update-Module -Name PSFalcon~~
+
+~~If you have any issues installing using the commands above, you can download this repository 
 and place the files inside your PowerShell module folder under `\PSFalcon`, or use `Import-Module`
-to directly import the PSFalcon manifest.
+to directly import the PSFalcon manifest.~~
 
 # Getting Started
 
