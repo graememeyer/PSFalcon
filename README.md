@@ -1,12 +1,14 @@
 # Fork Notes
 This is a fork of [bk-cs/PSFalcon](https://github.com/bk-cs/PSFalcon) which supports [graememeyer/PS.CredentialManager](https://github.com/graememeyer/PS.CredentialManager) for credential storage. 
 
-Currently that is the only change. Everything below this line is unchanged.
+Currently that is the only change. 
 
 # Installation
 
 This fork isn't published on a PowerShell repository, so to install it you must simply copy the module folder to a folder [on your PSModulePath](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/installing-a-powershell-module?view=powershell-5.1#where-to-install-modules).
 
+
+Everything below this line is unchanged.
 
 ---
 
